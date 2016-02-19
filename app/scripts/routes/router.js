@@ -32,8 +32,8 @@ define([
 
     index: function() {
         var homeView = new HomeView();
-        this.$app.append(homeView.render().el);
-        // this.showView(homeView);
+        // this.$app.html(homeView.render().el);
+        this.showView(homeView);
     },
 
     /* Removes the current view and replaces it with view.  Then reassigns currentView.*/

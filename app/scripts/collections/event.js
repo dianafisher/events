@@ -3,7 +3,9 @@
 define([
   'underscore',
   'backbone',
-  'models/Event'
+  'models/Event',
+  'firebase',
+  'backbonefire'
 ], function (_, Backbone, EventModel) {
   'use strict';
 

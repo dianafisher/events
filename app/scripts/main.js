@@ -26,6 +26,10 @@ require.config({
       deps:['underscore', 'jquery'],
       exports: 'Backbone'
     },
+    backbonefire: {
+      deps:['backbone', 'firebase'],
+      exports: 'BackboneFire'
+    },
     waitSeconds: 15
   }
 });
