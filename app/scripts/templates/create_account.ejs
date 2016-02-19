@@ -1,2 +1,77 @@
-<p>Your content here.</p>
+<div class="account">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Create an Account</h1>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal">
+        <p class="form-info">Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>            
+        <section>
+            <div class="form-group" id="name-group">
+                <label for="inputName" class="col-lg-2 control-label">Name<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputName" placeholder="Full Name" maxlength="100" autofocus required autocomplete="name">
+                    <p class="help-block" id="name-help"></p>
+                </div>    
+            </div>
+            <div class="form-group" id="email-group">
+                <label for="inputEmail" class="col-lg-2 control-label">Email<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputEmail" placeholder="Email" required autocomplete="email">
+                    <p class="help-block" id="email-help"></p>
+                </div>    
+            </div>
+            <div class="form-group" id="password-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Password<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" maxlength="100" required>
+                    <p class="help-block">Password must meet the following criteria:
+                        <ul>
+                            <li id="pwd-length">16-100 characters in length</li>
+                            <li id="pwd-symbol">At least one symbol: !, @, #, $, %, ^, *
+                            <li id="pwd-number">At least one number</li>
+                            <li id="pwd-lower">At least one lowercase letter</li>
+                            <li id="pwd-upper">At least one uppercase letter</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="form-group" id="repeat-password-group">
+                <label for="repeatPassword" class="col-lg-2 control-label">Repeat Password<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat Password" maxlength="100" required>
+                    <p class="help-block" id="repeat-password-help"></p>
+                </div>
+            </div>   
+        </section>        
+        <section>
+            <p class="form-info">Public biographical information</p>
+                <div class="form-group">
+                    <label for="birthday" class="col-lg-2 control-label">Birthday</label>
+                    <div class="col-lg-10">
+                        <input type="date" class="form-control" id="birthday">
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label for="inputEmployer" class="col-lg-2 control-label">Employer</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputEmployer" placeholder="Employer">
+                    </div>    
+                </div>
+                <div class="form-group">
+                    <label for="inputJobTitle" class="col-lg-2 control-label">Job Title</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="inputJobTitle" placeholder="Job Title">
+                    </div>    
+                </div>                                    
+        </section>
+        <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">                
+                <button id="submit-btn" type="submit" class="btn btn-success">Submit</button>
+              </div>
+        </div>   
+    </form>
+</div>
 

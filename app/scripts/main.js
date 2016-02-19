@@ -26,6 +26,9 @@ require.config({
       deps:['underscore', 'jquery'],
       exports: 'Backbone'
     },
+    firebase: {
+      exports: 'Firebase'
+    },
     backbonefire: {
       deps:['backbone', 'firebase'],
       exports: 'BackboneFire'
@@ -35,9 +38,10 @@ require.config({
 });
 
 require([
-  'backbone',
-  'routes/router'
+  'backbone',  
+  'routes/router',
+  'firebase'
 ], function (Backbone, Router) {
-  new Router();
+  new Router();  
   Backbone.history.start();  
 });
