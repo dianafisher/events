@@ -1,24 +1,39 @@
 /*global require*/
 'use strict';
 
-require.config({
+require.config({  
+  paths: {
+    jquery: '../bower_components/jquery/dist/jquery',    
+    underscore: '../bower_components/underscore/underscore',
+    backbone: '../bower_components/backbone/backbone',
+    bootstrap: '../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap',
+    firebase: '../bower_components/firebase/firebase',
+    backbonefire: '../bower_components/backbonefire/dist/backbonefire'  
+  },
   shim: {
     bootstrap: {
       deps: ['jquery'],
       exports: 'jquery'
     },
-  },
-  paths: {
-    jquery: '../bower_components/jquery/dist/jquery',
-    backbone: '../bower_components/backbone/backbone',
-    underscore: '../bower_components/lodash/dist/lodash',
-    bootstrap: '../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap',
-    firebase: '../bower_components/firebase/firebase',
-    backbonefire: '../bower_components/backbonefire/dist/backbonefire'  }
+    jquery: {
+      exports: '$'
+    },
+    underscore: {
+      deps:['jquery'],
+      exports: '_'
+    },
+    backbone: {
+      deps:['underscore', 'jquery'],
+      exports: 'Backbone'
+    },
+    waitSeconds: 15
+  }
 });
 
 require([
-  'backbone'
-], function (Backbone) {
-  Backbone.history.start();
+  'backbone',
+  'routes/router'
+], function (Backbone, Router) {
+  new Router();
+  Backbone.history.start();  
 });

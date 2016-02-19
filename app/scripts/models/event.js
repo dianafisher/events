@@ -13,6 +13,16 @@ define([
     },
 
     defaults: {
+        name: 'Untitled Event',
+        startDate: '',
+        startTime: '',
+        endDate: '',
+        endTime: '',
+        location: '',
+        type: '',
+        host: '',
+        guests: '',
+        message: ''
     },
 
     validate: function(attrs, options) {
