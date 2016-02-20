@@ -39,8 +39,7 @@ require.config({
 
 require([
   'backbone',  
-  'routes/router',
-  'firebase'
+  'routes/router'  
 ], function (Backbone, Router) {
   new Router();  
   Backbone.history.start();  

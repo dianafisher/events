@@ -1,2 +1,29 @@
-<p>Your content here.</p>
+<div class="page-header">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1><%= name %></h1>
+        </div>
+    </div>        
+</div>
+<div class="account card card--b">    
+     <div class="event-summary">
+        <div class="details-header">Starts At:</div>                        
+        <time datetime="<%= startDate %>"><%= dateStr %></time>
+        <time datetime="<%= startTime %>" class="pull-right"><%= timeStr %></time>
+        <div class="details-header">Ends At:</div>
+        <time datetime="<%= endDate %>"><%= endDateStr %></time>
+        <time datetime="<%= endTime %>" class="pull-right"><%= endTimeStr %></time>            
+        <div class="details-header">Where:</div><div class="details-info"><%= location %></div>
+        <div class="details-header">Type:</div>
+        <div class="details-info"><i class="panel-title-icon fa <%= event_icon %> pull-right"></i><%= type %></div>
+        <div class="details-header">Host:</div><div class="details-info"><%= host %></div>
+        <div class="details-header">Guest List:</div><div class="details-info"><%= guests %></div>
+        <div class="details-header">Message to Guests:</div><div class="details-info"><%= message %></div>                        
+    </div>
+</div>    
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="text"><a class="log-in" href="#events">View Events</a></h3>
+    </div>
+</div>   
 

@@ -1,2 +1,111 @@
-<p>Your content here.</p>
+<div class="account">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>Create an Event</h1>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal">
+        <p class="form-info">Required fields are followed by <strong><abbr title="required">*</abbr></strong>.</p>            
+        <section>            
+            <div class="form-group" id="name-group">
+                <label for="inputName" class="col-lg-2 control-label">Event Name<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputName" placeholder="Event name" maxlength="100" autofocus required>
+                    <p class="help-block" id="name-help"></p>
+                </div>    
+            </div>
+            <div class="form-group" id="start-date-group">
+                <label for="startDate" class="col-lg-2 control-label">Start Date<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <div class="input-group">                                  
+                        <input type="date" class="form-control" id="startDate" required>                    
+                        <span class="input-group-addon">at</span>
+                        <input type="time" class="form-control" id="startTime" required>
+                    </div>
+                    <p class="help-block" id="start-date-help"></p>
+                </div>
+            </div>
+            <div class="form-group" id="end-date-group">
+                <label class="col-lg-2 control-label">End Date<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <div class="input-group">                   
+                        <input type="date" class="form-control" id="endDate" required>                
+                        <span class="input-group-addon">at</span>                
+                        <input type="time" class="form-control" id="endTime" required>
+                    </div>   
+                    <p class="help-block" id="end-date-help"></p>             
+                </div>
+            </div>          
+            <div class="form-group" id="location-group">
+                <label for="inputLocation" class="col-lg-2 control-label">Where<abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputLocation" placeholder="Event location" required>
+                    <p class="help-block" id="location-help"></p>
+                </div>    
+            </div>
+            <div class="form-group" id="type-group">
+                <label for="inputType" class="col-lg-2 control-label">Type<abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input class="form-control" list="types" name="event_types" id="inputType" placeholder="Event Type" required>
+                    <datalist id="types">
+                        <option value="Birthday Party">
+                        <option value="Wedding">
+                        <option value="Graduation">
+                        <option value="Anniversary">
+                        <option value="Conference Talk">
+                        <option value="Sporting Event">
+                        <option value="Concert">
+                    </datalist>                    
+                    <p class="help-block" id="type-help"></p>
+                </div>    
+            </div>
+            <div class="form-group" id="host-group">
+                <label for="inputHost" class="col-lg-2 control-label">Hosted by<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputHost" placeholder="Event host" required>
+                    <p class="help-block" id="host-help"></p>
+                </div>    
+            </div>
+            <div class="form-group" id="guests-group">
+                <label for="inputGuests" class="col-lg-2 control-label">Guest List<strong><abbr title="required">*</abbr></strong></label>
+                <div class="col-lg-10">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="inputGuests" placeholder="Guest email address" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="button" id="add_guest">Add</button>
+                        </span>                        
+                    </div>
+                    <p class="help-block" id="guests-help"></p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10">
+                        <ul id="guest_list">
+                                                      
+                        </ul>
+                    </div>
+                </div>
+            </div>                  
+            <div class="form-group" id="message-group">
+                <label for="inputMessage" class="col-lg-2 control-label">Message to Guests</label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="5" id="inputMessage"></textarea>                    
+                    <p class="help-block" id="message-help"></p>
+                </div>    
+            </div>
+        </section>                
+        <div class="form-group">
+              <div class="col-lg-10 col-lg-offset-2">                
+                <button id="submit-btn" type="submit" class="btn btn-success">Create Event!</button>
+              </div>
+        </div>   
+    </form>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOpKJIjJ6PZF9T0WNyhbvIVh-Lau2AEtI&signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
+<script>
+      
+    </script>        
+</div>
 

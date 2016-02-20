@@ -1,2 +1,15 @@
-<p>Your content here.</p>
+<div class="col-md-6">    
+    <div class="event panel panel-success">
+        <div class="panel-heading">
+            <span class="panel-title"><%= name %><button id="details" class="btn btn-xs btn-success btn-outline pull-right"><a id="log-in" href="#events/show/<%= id %>">Details</a></button></span>        
+        </div>
+        <div class="panel-body">    
+            <div class="event-summary">
+                <time datetime="<%= startDate %>"><%= dateStr %> </time>
+                <time datetime="<%= startTime %>" class="pull-right"><%= timeStr %></time>            
+                <div class="event-type"><i class="panel-title-icon fa <%= event_icon %> pull-right"></i><%= type %></div>
+                <div class="event-location"><%= location %>            
+            </div>
+    </div>    
+</div>
 

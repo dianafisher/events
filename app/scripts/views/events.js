@@ -4,8 +4,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'templates'
-], function ($, _, Backbone, JST) {
+  'templates',
+  'views/event'  
+], function ($, _, Backbone, JST, EventView) {
   'use strict';
 
   var EventsView = Backbone.View.extend({
@@ -15,17 +16,39 @@ define([
 
     id: '',
 
-    className: '',
+    className: 'events-view',
 
     events: {},
 
     initialize: function () {
-      this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.collection, 'add', this.addOne);
+      this.listenTo(this.collection, 'reset', this.render);
+
+      this.collection.fetch();
     },
 
     render: function () {
-      this.$el.html(this.template(this.model.toJSON()));
+      this.$el.html(this.template());
+      
+      _.each(this.collection.models, function(ev){
+          // console.log(ev);
+          var view = new EventView({ model: ev });
+          var list = $('#event-list', this.el);
+          list.append(view.render().el);
+      }, this);
+
+      return this;
+    },
+
+    // Add a single event to the list by creating a view for it, and
+    // appending its element to the `<ul>`.
+    addOne: function (data) {
+        console.log(data);
+        var view = new EventView({ model: data });
+        var list = $('#event-list', this.el);
+        list.append(view.render().el);
     }
+
   });
 
   return EventsView;

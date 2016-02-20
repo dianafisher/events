@@ -5,7 +5,7 @@ define([
   'underscore',
   'backbone',
   'templates',
-  'firebase'  
+  'firebase' 
 ], function ($, _, Backbone, JST, Firebase) {
   'use strict';
 
@@ -33,12 +33,14 @@ define([
     },
 
     loginUser: function(e) {
+        e.preventDefault();
+
         var email = this.$('#inputEmail').val().trim();
         var password = this.$('#inputPassword').val().trim();
         var self = this;
 
         var firebaseRef = new Firebase('https://burning-torch-7549.firebaseio.com');
-
+        // Log the user in using Firebase authentication.
         firebaseRef.authWithPassword({
             email: email,
             password: password
@@ -58,7 +60,7 @@ define([
 
     // Redirect to the event list page.
     redirect: function() {
-        this.router.navigate('#events', {trigger: true});
+      Backbone.history.navigate('#events', {trigger: true});
     }
 
   });

@@ -13,7 +13,7 @@ define([
 ], function ($, Backbone, Events, HomeView, LoginView, CreateAccountView, CreateEventView, EventsView, EventDetailsView) {
   'use strict';
 
-  var RouterRouter = Backbone.Router.extend({
+  var AppRouter = Backbone.Router.extend({
     routes: {
         '': 'index',
         'signup': 'createAccount',
@@ -63,19 +63,9 @@ define([
 
     showEvents: function() {
         // console.log('showEvents');
-        var self = this;
-        Events.fetch({
-            success: function(data) {
-                console.log(data);
-                var eventsView = new EventsView({ collection: Events });
-                self.showView(eventsView);
-            },
-            error: function(model, xhr, options) {
-                console.log(xhr.status);
-                console.log(xhr.responseText);
-                console.log(options);
-            }
-        });
+
+        var eventsView = new EventsView({collection: Events});
+        this.showView(eventsView);
     },
 
     eventDetails: function(eventId) {
@@ -89,5 +79,5 @@ define([
 
   });
 
-  return RouterRouter;
+  return AppRouter;
 });
