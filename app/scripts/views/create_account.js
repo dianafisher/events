@@ -48,6 +48,7 @@ define([
     },
 
     validateName: function(e) {
+        e.preventDefault();
         this.username = this.$('#inputName').val().trim();
         // console.log(this.username);
         if (this.username.length === 0) {
@@ -62,6 +63,7 @@ define([
     },
 
     validateEmail: function(e) {
+        e.preventDefault();
         this.email = this.$('#inputEmail').val().trim();
         // console.log(this.email);
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -83,6 +85,7 @@ define([
     },
 
     validatePassword: function(e) {
+        e.preventDefault();
         this.password = this.$inputPassword.val().trim();
         var errors = [];
 
@@ -148,6 +151,7 @@ define([
     },
 
     validateRepeatedPassword: function(e) {
+        e.preventDefault();
         var password = this.$inputPassword.val().trim();
         var repeatedPassword = this.$repeatPassword.val().trim();
 
@@ -163,6 +167,7 @@ define([
     },
 
     createUser: function(e) {
+        e.preventDefault();
         console.log('createUser!');
         // validate all required fields (again)
         this.validateName(e);

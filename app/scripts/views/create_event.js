@@ -1,4 +1,6 @@
 /*global define*/
+/*global google*/
+/* jshint undef: false, unused: false, latedef:false */
 
 define([
   'jquery',
@@ -301,6 +303,7 @@ var componentForm = {
 function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
+    'use strict';
     autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementById('inputLocation')),
     {types: ['geocode']});
@@ -312,6 +315,7 @@ function initAutocomplete() {
 
 // [START region_fillform]
 function fillInAddress() {
+  'use strict';
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
@@ -336,6 +340,7 @@ function fillInAddress() {
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
+  'use strict';
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var geolocation = {

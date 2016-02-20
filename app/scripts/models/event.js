@@ -23,14 +23,7 @@ define([
         host: '',
         guests: '',
         message: ''
-    },
-
-    validate: function(attrs, options) {
-    },
-
-    parse: function(response, options)  {
-      return response;
-    }
+    }    
   });
 
   return EventModel;
