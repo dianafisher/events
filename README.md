@@ -1,6 +1,7 @@
 # Event Planner
 
-Event Planner is a simple application to create and view meet-up events.  
+Event Planner is a simple application to create and view meet-up events.
+The application was built with Backbone.js and Bootstrap.  Firebase was used for the backend datastorate, user authentication and hosting.
 
 ### Live Demo
 Play around with the [real time Event Planner demo](https://burning-torch-7549.firebaseapp.com).
