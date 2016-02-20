@@ -173,7 +173,7 @@ define([
 
     validateLocation: function(e) {
         this.eventLocation = this.$('#inputLocation').val();
-        console.log(this.eventLocation);
+        // console.log(this.eventLocation);
         if (this.eventLocation.length === 0) {
             this.$('#location-group').addClass('has-error');
             this.$('#location-help').html('Please enter a location for the event.');
@@ -187,7 +187,7 @@ define([
 
     validateType: function(e) {
         this.eventType = this.$('#inputType').val();
-        console.log('type', this.eventType);
+        // console.log('type', this.eventType);
         if (this.eventLocation.length === 0) {
             this.$('#type-group').addClass('has-error');
             this.$('#type-help').html('Please enter an event type.');
@@ -201,7 +201,7 @@ define([
 
     validateHost: function(e) {
         this.eventHost = this.$('#inputHost').val();
-        console.log(this.eventHost);
+        // console.log(this.eventHost);
         if (this.eventLocation.length === 0) {
             this.$('#host-group').addClass('has-error');
             this.$('#host-help').html('Please enter a host for the event.');
@@ -227,7 +227,7 @@ define([
 
     addGuest: function(e) {
        var guest = this.$('#inputGuests').val();
-       console.log('adding', guest);
+       // console.log('adding', guest);
 
        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
        // Make sure the guest input field contains a valid email address.
@@ -288,74 +288,7 @@ define([
   return CreateEventView;
 });
 
-/* Google Places API (for autofill of location input)*/
-var placeSearch, autocomplete;
-var componentForm = {
-    street_number: 'short_name',
-    route: 'long_name',
-    locality: 'long_name',
-    administrative_area_level_1: 'short_name',
-    country: 'long_name',
-    postal_code: 'short_name'
-};
 
-
-function initAutocomplete() {
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    'use strict';
-    autocomplete = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */(document.getElementById('inputLocation')),
-    {types: ['geocode']});
-
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddress);
-}
-
-// [START region_fillform]
-function fillInAddress() {
-  'use strict';
-  // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-
-  for (var component in componentForm) {
-    document.getElementById(component).value = '';
-    document.getElementById(component).disabled = false;
-  }
-
-  // Get each component of the address from the place details
-  // and fill the corresponding field on the form.
-  for (var i = 0; i < place.address_components.length; i++) {
-    var addressType = place.address_components[i].types[0];
-    if (componentForm[addressType]) {
-      var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
-    }
-  }
-}
-// [END region_fillform]
-
-// [START region_geolocation]
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-  'use strict';
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
-// [END region_geolocation]
 
 
 
