@@ -212,12 +212,18 @@ define([
                                 console.log('Could not save data ' + error2);
                             } else {
                                 console.log('Successfully saved.');
+                                self.redirect();
                             }
                         }
                     );
                 }
             });
         }
+    },
+
+    // Redirect to the event list page.
+    redirect: function() {
+      Backbone.history.navigate('#events', {trigger: true});
     }
   });
 
