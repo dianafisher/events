@@ -1,6 +1,4 @@
 /*global define*/
-/*global google*/
-/* jshint undef: false, unused: false, latedef:false */
 
 define([
   'jquery',
@@ -34,6 +32,7 @@ define([
         'blur #inputGuests': 'validateGuests',
         'click #add_guest': 'addGuest',
         'click #formErrorAlert': 'alertDismissed',
+        'click #formSuccessAlert': 'successAlertDismissed',
 
         'submit': 'createEvent'
     },
@@ -46,8 +45,7 @@ define([
 
     render: function () {
         // console.log('render CreateEventView');
-        this.$el.html(this.template());
-
+        this.$el.html(this.template());        
         return this;
     },
 
@@ -68,7 +66,7 @@ define([
             this.$('#name-group').removeClass('has-error');
             this.$('#name-help').html('');
             this.nameHasErrors = false;
-        }
+        }        
     },
 
     validateStartDate: function(e) {
@@ -123,7 +121,7 @@ define([
           } else {
               this.$('#end-date-group').removeClass('has-error');
               this.$('#end-date-help').html('');
-              this.endtDateErrors = false;
+              this.endDateErrors = false;
           }
       }
     },
@@ -174,6 +172,7 @@ define([
     },
 
     validateLocation: function(e) {
+        e.preventDefault();
         this.eventLocation = this.$('#inputLocation').val();
         // console.log(this.eventLocation);
         if (this.eventLocation.length === 0) {
@@ -188,6 +187,7 @@ define([
     },
 
     validateType: function(e) {
+        e.preventDefault();
         this.eventType = this.$('#inputType').val();
         // console.log('type', this.eventType);
         if (this.eventLocation.length === 0) {
@@ -202,6 +202,7 @@ define([
     },
 
     validateHost: function(e) {
+        e.preventDefault();
         this.eventHost = this.$('#inputHost').val();
         // console.log(this.eventHost);
         if (this.eventLocation.length === 0) {
@@ -216,6 +217,7 @@ define([
     },
 
     validateGuests: function(e) {
+        e.preventDefault();
         if (this.guestList.length === 0) {
             this.$('#guests-group').addClass('has-error');
             this.$('#guests-help').html('Please add an email address for each guest.');
@@ -229,6 +231,7 @@ define([
     },
 
     addGuest: function(e) {
+        e.preventDefault();
        var guest = this.$('#inputGuests').val();
        // console.log('adding', guest);
 
@@ -263,6 +266,10 @@ define([
      showSuccessAlert: function() {
        $('#formSuccessAlert').show();
      },
+
+     successAlertDismissed: function() {
+      $('#formSuccessAlert').hide();
+     },
      
     containsErrors: function() {
       return (this.guestsHasErrors || this.hostErrors || this.typeErrors || this.locationsErrors || this.endTimeErrors || this.endDateErrors || this.startTimeErrors || this.startDateErrors || this.nameHasErrors);
@@ -270,6 +277,7 @@ define([
 
      createEvent: function(e) {        
         console.log('create event');
+        e.preventDefault();
 
         // Validate all fields.
         this.validateName(e);
@@ -299,9 +307,7 @@ define([
               message: message
           };
           Events.create(attributes);
-          this.showSuccessAlert();
-          // redirect to the event list page.
-          this.redirect();  
+          this.showSuccessAlert();          
         }
         else {
           console.log('form has errors');
