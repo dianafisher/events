@@ -90,7 +90,7 @@ define([
         var errors = [];
 
         // Check password length
-        if (this.password.length < 16 || this.password.length > 100) {
+        if (this.password.length < 8 || this.password.length > 100) {
             errors.push('#pwd-length');
             this.$('#pwd-length').addClass('bg-danger');
         } else {
