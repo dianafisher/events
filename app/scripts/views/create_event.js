@@ -31,7 +31,9 @@ define([
         'blur #inputLocation': 'validateLocation',
         'blur #inputType': 'validateType',
         'blur #inputHost': 'validateHost',
+        'blur #inputGuests': 'validateGuests',
         'click #add_guest': 'addGuest',
+        'click #formErrorAlert': 'alertDismissed',
 
         'submit': 'createEvent'
     },
@@ -39,7 +41,7 @@ define([
         initialize: function () {
         // console.log('login view initialize');
         this.nameHasErrors = false;
-        this.guestList = [];
+        this.guestList = [];        
     },
 
     render: function () {
@@ -191,11 +193,11 @@ define([
         if (this.eventLocation.length === 0) {
             this.$('#type-group').addClass('has-error');
             this.$('#type-help').html('Please enter an event type.');
-            this.TypeErrors = true;
+            this.typeErrors = true;
         } else {
             this.$('#type-group').removeClass('has-error');
             this.$('#type-help').html('');
-            this.TypeErrors = false;
+            this.typeErrors = false;
         }
     },
 
@@ -205,17 +207,18 @@ define([
         if (this.eventLocation.length === 0) {
             this.$('#host-group').addClass('has-error');
             this.$('#host-help').html('Please enter a host for the event.');
-            this.HostErrors = true;
+            this.hostErrors = true;
         } else {
             this.$('#host-group').removeClass('has-error');
             this.$('#host-help').html('');
-            this.HostErrors = false;
+            this.hostErrors = false;
         }
     },
 
     validateGuests: function(e) {
         if (this.guestList.length === 0) {
-            this.$('#guests-help').html('Please enter an email address for each guest.');
+            this.$('#guests-group').addClass('has-error');
+            this.$('#guests-help').html('Please add an email address for each guest.');
             this.guestsHasErrors = true;
         }
         else {
@@ -233,7 +236,7 @@ define([
        // Make sure the guest input field contains a valid email address.
         if (guest.length === 0) {
             this.$('#guests-group').addClass('has-error');
-            this.$('#guests-help').html('Please enter an email address for each guest.');
+            this.$('#guests-help').html('Please add an email address for each guest.');
             this.guestsHasErrors = true;
         } else if (!re.test(guest)) {
             this.$('#guests-group').addClass('has-error');
@@ -249,39 +252,62 @@ define([
         }
     },
 
-     createEvent: function(e) {
-        e.preventDefault();
-        // console.log('create event');
+    showErrorAlert: function() {
+      $('#formErrorAlert').show();
+    },
+     
+     alertDismissed: function() {      
+      $('#formErrorAlert').hide();
+     },
+
+     showSuccessAlert: function() {
+       $('#formSuccessAlert').show();
+     },
+     
+    containsErrors: function() {
+      return (this.guestsHasErrors || this.hostErrors || this.typeErrors || this.locationsErrors || this.endTimeErrors || this.endDateErrors || this.startTimeErrors || this.startDateErrors || this.nameHasErrors);
+    },
+
+     createEvent: function(e) {        
+        console.log('create event');
 
         // Validate all fields.
-        this.validateName();
-        this.validateStartDate();
-        this.validateStartTime();
-        this.validateEndDate();
-        this.validateEndTime();
-        this.validateLocation();
-        this.validateType();
-        this.validateHost();
-        this.validateGuests();
+        this.validateName(e);
+        this.validateStartDate(e);
+        this.validateStartTime(e);
+        this.validateEndDate(e);
+        this.validateEndTime(e);
+        this.validateLocation(e);
+        this.validateType(e);
+        this.validateHost(e);
+        this.validateGuests(e);
 
-        // Make sure there are not any errors before creating the event.
-
-
-        var message = this.$('#inputMessage').val().trim();
-        // Save the new event to the database.
-        var attributes = {
-            name: this.eventName,
-            startDate: this.startDate,
-            startTime: this.startTime,
-            endDate: this.endDate,
-            endTime: this.endTime,
-            location: this.eventLocation,
-            type: this.eventType,
-            host: this.eventHost,
-            guests: this.guestList,
-            message: message
-        };
-        Events.create(attributes);
+        // Make sure there are not any errors before creating the event.        
+        if (!this.containsErrors()) {
+          var message = this.$('#inputMessage').val().trim();
+          // Save the new event to the database.
+          var attributes = {
+              name: this.eventName,
+              startDate: this.startDate,
+              startTime: this.startTime,
+              endDate: this.endDate,
+              endTime: this.endTime,
+              location: this.eventLocation,
+              type: this.eventType,
+              host: this.eventHost,
+              guests: this.guestList,
+              message: message
+          };
+          Events.create(attributes);
+          this.showSuccessAlert();
+          // redirect to the event list page.
+          this.redirect();  
+        }
+        else {
+          console.log('form has errors');
+          this.showErrorAlert();
+        }
+        
     }
   });
 

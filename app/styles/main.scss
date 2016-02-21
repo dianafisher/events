@@ -125,6 +125,10 @@ a#log-in {
   text-decoration: none;
 }
 
+.alert {
+  display: none;
+}
+
 /* Adjust button colors */
 .btn:active, .btn:focus, .btn:hover {
   background: #DB455D;
